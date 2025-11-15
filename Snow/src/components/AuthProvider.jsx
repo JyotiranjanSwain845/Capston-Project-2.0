@@ -150,7 +150,6 @@ export function AuthProvider({ children }) {
       return v.split(" ")[0]; // takes "3" from "3 - Low"
     };
 
-    setCreating(true);
     setEditingId(inc.sys_id);
 
     setFormData({
