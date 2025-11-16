@@ -44,7 +44,6 @@ export default function Home() {
     fetchData();
   }, [isLogged]);
 
-
   return (
     <>
       {isLogged && incidents ? (
@@ -54,7 +53,7 @@ export default function Home() {
               sx={{
                 position: "sticky",
                 top: 60,
-                ml: 10,
+                ml: 0,
                 zIndex: 10,
                 backgroundColor: "none",
                 py: 1,
@@ -75,7 +74,6 @@ export default function Home() {
                   transition: "all 0.3s ease",
                   width: "100%",
                   flexWrap: "nowrap",
-
                 }}
               >
                 <Grid
@@ -95,13 +93,13 @@ export default function Home() {
                     }}
                   >
                     {incidents.map((inc) => (
-                      <Box key={inc.sys_id} sx={{ mb: 2,px:2,py:2 }}>
+                      <Box key={inc.sys_id} sx={{ mb: 2, px: 2, py: 2 }}>
                         <Card
                           sx={{
                             width: "100%",
                             height: 200,
-                            borderRadius:6,
-                            boxShadow:10,
+                            borderRadius: 6,
+                            boxShadow: 10,
                           }}
                         >
                           <CardContent>
@@ -143,7 +141,6 @@ export default function Home() {
                             >
                               Delete
                             </Button>
-                            <a>Create New</a>
                           </CardContent>
                         </Card>
                       </Box>
@@ -247,34 +244,38 @@ export default function Home() {
                           }}
                         >
                           {editingId ? "Update" : "Submit"}
-                        </Button>   
-                         <Typography
-                          component="a"
-                          onClick={createInc}
-                          sx={{
-                            display: "block",
-                            mt: 1.5,
-                            color: "#1976d2",
-                            textDecoration: "underline",
-                            cursor: "pointer",
-                            fontWeight: 500,
-                            textAlign: "center",
-                            "&:hover": {
-                              color: "#115293",
-                            },
-                          }}
-                        >
-                          Create New
-                        </Typography>
+                        </Button>
+                        {editingId ? (
+                          <Typography
+                            component="a"
+                            onClick={createInc}
+                            sx={{
+                              display: "block",
+                              mt: 1.5,
+                              color: "#1976d2",
+                              textDecoration: "underline",
+                              cursor: "pointer",
+                              fontWeight: 500,
+                              textAlign: "center",
+                              "&:hover": {
+                                color: "#115293",
+                              },
+                            }}
+                          >
+                            Create New
+                          </Typography>
+                        ) : (
+                          <></>
+                        )}
                       </Stack>
                     </Box>
                   </Paper>
                 </Grid>
               </Grid>
             ) : (
-              <>
+              <Box sx={{mt:0,maxWidth:"100%",}}>
                 <Typography
-                  variant="h5"
+                  variant="h3"
                   sx={{ alignSelf: "center", textAlign: "center", py: 3 }}
                 >
                   Incident Records:
@@ -287,12 +288,19 @@ export default function Home() {
                   sx={{
                     maxWidth: creating ? "30%" : "100%",
                     transition: "all 0.3s ease",
-                    py:2
+                    py: 2 
                   }}
                 >
                   {incidents.map((inc) => (
                     <Grid key={inc.sys_id}>
-                      <Card sx={{ width: 300, height: 200,borderRadius:6,boxShadow:6 }}>
+                      <Card
+                        sx={{
+                          width: 300,
+                          height: 200,
+                          borderRadius: 6,
+                          boxShadow: 6,
+                        }}
+                      >
                         <CardContent>
                           <Typography variant="h6">
                             Incident #: {inc.number}
@@ -317,10 +325,6 @@ export default function Home() {
                             }}
                             variant="contained"
                             onClick={() => {
-                              console.log(
-                                "clicked with inc having number :",
-                                inc.number
-                              );
                               onEdit(inc);
                             }}
                           >
@@ -343,7 +347,7 @@ export default function Home() {
                     </Grid>
                   ))}
                 </Grid>
-              </>
+              </Box>
             )}
           </Stack>
         </Box>
