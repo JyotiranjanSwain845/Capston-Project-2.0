@@ -38,6 +38,7 @@ const IncidentField = () => {
         variant="contained"
         sx={{
           backgroundColor: "#16a34a",
+          mt:"-1%",
           px: { xs: 2, sm: 3 },
           py: { xs: 1, sm: 1.5 },
           borderRadius: 50,

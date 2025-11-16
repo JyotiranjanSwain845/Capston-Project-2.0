@@ -315,7 +315,7 @@ export default function Home() {
                           </Typography>
                           <Typography variant="body2" disabled>
                             
-                            Priority: {inc.urgency}
+                            Priority: {inc.priority}
                           </Typography>
                           <Button
                             sx={{
@@ -324,7 +324,9 @@ export default function Home() {
                               color: "#032d42",
                             }}
                             variant="contained"
-                            onClick={() => onEdit(inc)}
+                            onClick={() => {
+                              console.log("clicked with inc having number :",inc.number);
+                              onEdit(inc)}}
                           >
                             
                             Edit

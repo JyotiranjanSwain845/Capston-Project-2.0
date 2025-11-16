@@ -145,13 +145,14 @@ export function AuthProvider({ children }) {
 
   /* record update action */
   const onEdit = (inc) => {
+
     const extractNumber = (v) => {
       if (!v) return "";
-      return v.split(" ")[0]; // takes "3" from "3 - Low"
+      return v.split(" ")[0];
     };
-
+    
     setEditingId(inc.sys_id);
-
+    setCreating(true);
     setFormData({
       incidentNumber: inc.number,
       shortDescription: inc.short_description,
@@ -159,6 +160,7 @@ export function AuthProvider({ children }) {
       urgency: extractNumber(inc.urgency),
       priority: extractNumber(inc.priority),
     });
+
   };
 
   const onEditSubmit = async (e) => {
