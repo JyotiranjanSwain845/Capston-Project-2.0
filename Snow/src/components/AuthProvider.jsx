@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState, useCallback } from "react";
+import { createContext, useEffect, useState, useCallback,useMemo } from "react";
 import axios from "axios";
 
 export const AuthContext = createContext({
@@ -215,27 +215,48 @@ export function AuthProvider({ children }) {
     reload();
   }, [reload]);
 
+    const contextValue = useMemo(
+    () => ({
+      isLogged,
+      checking,
+      login,
+      reload,
+      logout,
+      incidents,
+      setIncidents,
+      onDelete,
+      creating,
+      createInc,
+      formData,
+      setFormData,
+      handleChange,
+      handleSubmit,
+      onEdit,
+      onEditSubmit,
+      editingId,
+    }),
+    [
+      isLogged,
+      checking,
+      login,
+      reload,
+      logout,
+      incidents,
+      onDelete,
+      creating,
+      createInc,
+      formData,
+      handleChange,
+      handleSubmit,
+      onEdit,
+      onEditSubmit,
+      editingId,
+    ]
+  );
+
   return (
     <AuthContext.Provider
-      value={{
-        isLogged,
-        checking,
-        login,
-        reload,
-        logout,
-        incidents,
-        setIncidents,
-        onDelete,
-        creating,
-        createInc,
-        formData,
-        setFormData,
-        handleChange,
-        handleSubmit,
-        onEdit,
-        onEditSubmit,
-        editingId,
-      }}
+      value={contextValue}
     >
       {children}
     </AuthContext.Provider>
